@@ -46,6 +46,7 @@ export async function refundPayment(transactionId: string) {
   const result = await db.query(`SELECT * FROM transactions WHERE id = ${transactionId}`);
   const transaction = result.rows[0];
 
+  // No null check — crashes if transaction doesn't exist
   const refund = await stripe.refunds.create({ charge: transaction.stripe_id });
 
   await db.query(`UPDATE transactions SET status = 'refunded' WHERE id = ${transactionId}`);
