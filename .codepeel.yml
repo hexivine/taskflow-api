@@ -1,0 +1,21 @@
+auto_review:
+  enabled: true
+
+walkthrough:
+  enabled: true
+  sequence_diagram: true
+
+auto_fix:
+  enabled: true
+
+auto_test:
+  enabled: true
+
+ignore_paths:
+  - '**/node_modules/**'
+  - '**/*.test.ts'
+
+rules:
+  - pattern: 'sk_live_|sk_test_'
+    message: 'Stripe API key must not be committed to source control'
+    severity: error
