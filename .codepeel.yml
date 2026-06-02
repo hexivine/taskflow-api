@@ -1,0 +1,26 @@
+# CodePeel Configuration
+# https://codepeel.com/docs/configuration
+
+auto_review:
+  enabled: true
+  ignore_title_keywords: ['WIP', 'DO NOT REVIEW']
+
+walkthrough:
+  enabled: true
+  sequence_diagram: true
+
+ignore_paths:
+  - '**/*.test.ts'
+  - '**/*.spec.ts'
+  - '**/node_modules/**'
+
+rules:
+  - pattern: 'TODO|FIXME|HACK'
+    message: 'Unresolved TODO/FIXME found — resolve before merging'
+    severity: warning
+  - pattern: 'console\.(log|debug|info)'
+    message: 'Remove console statements before production'
+    severity: warning
+  - pattern: 'password.*=.*[''"]'
+    message: 'Potential hardcoded password detected'
+    severity: error
